@@ -1,0 +1,150 @@
+\documentclass[11pt]{article}
+\usepackage[english]{babel}
+\usepackage{cmbright}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{fontawesome5}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage[sf]{libertine}
+\usepackage{microtype}
+\usepackage{paracol}
+\usepackage{supertabular}
+\usepackage{titlesec}
+\hypersetup{colorlinks, urlcolor=black, linkcolor=black}
+
+% Geometry
+\geometry{hmargin=1.75cm, vmargin=1.8cm}
+\columnratio{0.50, 0.50}
+\setlength\columnsep{0.04\textwidth}
+\setlength\parindent{0pt}
+\setlength{\smallskipamount}{4pt plus 1pt minus 1pt}
+\setlength{\medskipamount}{10pt plus 3pt minus 3pt}
+\setlength{\bigskipamount}{14pt plus 4pt minus 4pt}
+
+% Style
+\pagestyle{empty}
+\titleformat{\section}{\scshape\LARGE\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{\medskipamount}{\smallskipamount}
+\newcommand{\heading}[2]{\centering{\sffamily\Huge #1}\\\smallskip{\large{#2}}}
+\newcommand{\entry}[4]{{{\textbf{#1}}} \hfill #3 \\ #2 \hfill #4}
+\newcommand{\tableentry}[3]{\textsc{#1} & #2\expandafter\ifstrequal\expandafter{#3}{}{\\}{\\[4pt]}}
+
+\begin{document}
+
+\vspace*{0.3cm}
+
+\begin{paracol}{2}
+
+% Name & headline
+\heading{Nikolas Charalambidis}{Senior Software Developer. \\ Java Ecosystem Enthusiast.}
+
+\switchcolumn
+
+% Identity card
+\vspace{0.005\textheight}
+\begin{supertabular}{ll}
+  \footnotesize\faPhone & +420 731 873 330 \\
+  \footnotesize\faEnvelope & \href{mailto:nikolas.charalambidis@gmail.com}{nikolas.charalambidis@gmail.com} \\
+  \footnotesize\faGlobe & \href{https://www.nikolas-charalambidis.com/}{nikolas-charalambidis.com} \\
+  \footnotesize\faGithub & \href{https://github.com/Nikolas-Charalambidis}{github.com/Nikolas-Charalambidis} \\
+  \footnotesize\faStackOverflow & \href{https://stackoverflow.com/users/3764965}{stackoverflow.com/users/3764965} \\
+\end{supertabular}
+
+\smallskip
+\switchcolumn*
+
+\section{education}
+
+\entry{University of Economics}{Bachelor's Degree, $\sim$83rd percentile}{Prague}{2014 -- 2018}
+\begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=4pt]
+  \item Program: Information Systems and Technology
+\end{itemize}
+
+\smallskip
+
+\entry{University of Economics}{Master's Degree, $\sim$97th percentile}{Prague}{2018 -- 2020}
+\begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=4pt]
+  \item Program: Applied Informatics
+\end{itemize}
+
+\switchcolumn
+
+\section{skills}
+\begin{supertabular}{rl}
+  \tableentry{\footnotesize\faCode}{Java \textperiodcentered{} Spring Boot \textperiodcentered{} Claude Code}{}
+  \tableentry{}{Architecture \textperiodcentered{} Standardization}{spaceafter}
+
+  \tableentry{\footnotesize\faLanguage}{English \textperiodcentered{} proficient}{}
+  \tableentry{}{Czech \textperiodcentered{} native}{}
+  \tableentry{}{Thai \textperiodcentered{} beginner}{}
+\end{supertabular}
+
+% Sync columns so Experience and Certifications map directly to each other
+\switchcolumn*
+
+\section{experience}
+
+\entry{Finshape}{Software Developer}{Contractor, Remote}{2020 -- ongoing}
+\begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=4pt]
+  \item Internet banking BE implementation: TBC Bank (Georgia, 2020), Access Bank (2022), Victoria Bank (Moldova, 2024), in-house product customization and extension
+  \item Cross-project consultation and standardization, shared libraries implementation
+  \item Java 21, Spring Boot, RabbitMQ, Kafka, Kubernetes, Microservices
+\end{itemize}
+
+\smallskip
+
+\entry{Alpiq Energy SE}{Software Developer}{Contractor, Hybrid}{2020}
+\begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=4pt]
+  \item Broker platform and CRM on microservice architecture
+  \item Java 11, Spring Boot (Cloud, Data JPA), Camunda, AWS, MongoDB, MySQL
+\end{itemize}
+
+\smallskip
+
+\entry{T-Mobile}{Software Developer}{Contractor, Site}{2018 -- 2020}
+\begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=4pt]
+  \item International REST API, middleware for Můj T-Mobile mobile application
+  \item Java 11, Spring Boot, ELK, Kibana APM, Redis, Thymeleaf
+\end{itemize}
+
+\smallskip
+
+\entry{Komerční Banka}{Software Developer}{Internship, Site}{2018}
+\begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=4pt]
+  \item In-house internal systems, back-end integration, BPM platform development
+  \item IBM-BPM, JavaScript, BPMN, SOAP, REST, LDAP
+\end{itemize}
+
+\switchcolumn
+
+\section{certifications}
+\begin{supertabular}{rl}
+  \tableentry{Java}{\textbf{Oracle Certified Professional}}{}
+  \tableentry{}{OCPJP, 1Z0-809, Java 8 SE, Oct 2020}{spaceafter}
+  \tableentry{Java}{\textbf{Oracle Certified Associate}}{}
+  \tableentry{}{OCAJP, 1Z0-808, Java 8 SE, Jul 2019}{spaceafter}
+\end{supertabular}
+
+\section{miscellaneous}
+\begin{supertabular}{rl}
+  \tableentry{domain}{Banking}{}
+  \tableentry{}{PSD2, PCI DSS, AMLD}{spaceafter}
+  \tableentry{volunteering}{Stackoverflow}{}
+  \tableentry{}{\#SOreadytohelp}{spaceafter}
+  \tableentry{interest}{Behavioral Economy}{}
+\end{supertabular}
+
+\medskip
+
+\section{open source}
+\begin{supertabular}{rl}
+  \tableentry{Maven Plugin}{\textbf{facepalm-maven-plugin}}{}
+  \tableentry{}{Security-first leaks scanner}{spaceafter}
+  \tableentry{CLI App}{\textbf{czechout}}{}
+  \tableentry{}{Personal invoice system}{spaceafter}
+\end{supertabular}
+
+\end{paracol}
+
+\end{document}
