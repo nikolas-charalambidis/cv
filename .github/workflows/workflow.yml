@@ -22,7 +22,7 @@ jobs:
   build-and-deploy:
     environment:
       name: github-pages
-      url: ${{ steps: deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -40,7 +40,7 @@ jobs:
           # Moves the compiled PDF into the deployment directory
           mv cv.pdf public/
           # Optional: Create an index.html so visitors see something if they type your root Pages URL
-          echo '<meta http- Fitzgerald http-equiv="refresh" content="0; URL=./cv.pdf">' > public/index.html
+          echo '<meta http-equiv="refresh" content="0; URL=./cv.pdf">' > public/index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
