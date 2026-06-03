@@ -1,4 +1,6 @@
 \documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{cmbright}
 \usepackage{enumitem}
@@ -11,7 +13,25 @@
 \usepackage{paracol}
 \usepackage{supertabular}
 \usepackage{titlesec}
-\hypersetup{colorlinks, urlcolor=black, linkcolor=black}
+
+% Define the conditional variable BEFORE using it
+\newif\ifprintversion
+\printversionfalse % online PDF
+% \printversiontrue % print PDF
+
+\ifprintversion
+  \hypersetup{hidelinks}
+\else
+  \hypersetup{
+    colorlinks=true,
+    urlcolor=blue,
+    linkcolor=blue
+  }
+\fi
+\usepackage[normalem]{ulem}
+
+% Force correct hyphenation behavior for Czech names (now valid with T1 encoding)
+\hyphenation{Čes-ká Spo-ři-tel-na Komerč-ní}
 
 % Geometry
 \geometry{hmargin=1.75cm, vmargin=1.5cm}
@@ -29,7 +49,10 @@
 \newcommand{\entry}[4]{{{\textbf{#1}}} \hfill #3 \\
 #2 \hfill #4}
 
-\newcommand{\tableentry}[3]{\textsc{#1} & #2\expandafter\ifstrequal\expandafter{#3}{}{\\}{\\[3pt]}}
+% Fixed definition to safely handle empty vs non-empty arguments for row spacing
+\newcommand{\tableentry}[3]{%
+  \textsc{#1} & #2\ifx\relax#3\relax\\[0pt]\else\\[3pt]\fi%
+}
 
 \begin{document}
 
@@ -37,7 +60,7 @@
 \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l r @{}}
   \begin{tabular}[b]{@{}l@{}}
     {\sffamily\Huge\textbf{Nikolas Charalambidis}} \\[2pt]
-    {\large Senior Software Engineer \textperiodcentered{} Distributed Systems \textperiodcentered{} Banking Platforms}
+    {\large Senior Software Engineer $\cdot$ Distributed Systems $\cdot$ Banking Platforms}
   \end{tabular} &
   \footnotesize
   \begin{tabular}[b]{@{}ll@{}}
@@ -51,7 +74,7 @@
 
 \vspace{0.2cm}
 
-\small Senior backend engineer with 8+ years of experience building software systems in banking, fintech, and telecommunications. \small Specialized in Java, distributed systems, integrations, and regulated environments.
+\small Senior backend engineer with 8+ years of experience building software systems in banking, fintech, and telecommunications. Specialized in Java, distributed systems, integrations, and regulated environments.
 
 \begin{paracol}{2}
 
@@ -59,20 +82,19 @@
 
 \section{experience}
 
-\entry{Finshape}{Software Engineer \textperiodcentered{} Fintech}{2021 -- ongoing}{Remote}
+\entry{Finshape}{Software Engineer $\cdot$ Fintech}{2021 -- ongoing}{Remote}
 \begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=3pt]
-  \item Developed and maintained backend services for internet banking platforms used by Tier-1 banks (Access Bank, Victoria Bank) in regulated production environments
-  \item Delivered Victoria Bank (2024) integration, achieving Visa certification on first attempt and ensuring production readiness of core backend components
-  \item Covered temporarily team lead responsibilities when required
-  \item Represented the team in backend council discussions as primary backend engineer, shaping cross-project architecture and technical direction
+  \item Engineered and maintained core backend services for internet banking platforms deployed at three Tier-1 banks (TBC Bank, Access Bank, Victoria Bank) across regulated production environments
+  \item Delivered Victoria Bank (2024) integration end-to-end — achieved Visa ADS certification on first attempt, implemented Open Banking PSD2-compliant flows, and ensured PCI-DSS production readiness of core backend components
+  \item Stepped into team lead role when required, and represented the team in backend council discussions as primary backend engineer, shaping cross-project architecture and technical direction
+  \item Drove internal AI tooling adoption as part of the internal AI Champions program: authored team-wide Claude Code guidelines, MCP integration standards, and reusable prompt workflows, reducing onboarding friction and standardizing AI-assisted development across the backend team
   \item Contributed to improving shared libraries and reusable backend components used across multiple banking projects
-  \item Selected for internal AI Champions program focused on AI-assisted development, contributing to standardization and adoption of AI-assisted engineering practices (Claude Code rules, structured prompting, reusable workflows)
   \item Java 21, Spring Boot, RabbitMQ, Kafka, Kubernetes, microservices, and distributed systems
 \end{itemize}
 
 \smallskip
 
-\entry{Česká Spořitelna}{Software Engineer \textperiodcentered{} Bank}{2020 -- 2021}{Remote}
+\entry{Česká Spořitelna}{Software Engineer $\cdot$ Bank}{2020 -- 2021}{Remote}
 \begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=3pt]
   \item Led implementation of Bank Identity integration for Česká spořitelna, enabling secure authentication for government services including data mailbox access
   \item Integrated authentication flows with NIA (National Identity Authority), ensuring compliance with national eIDAS identity standards
@@ -83,7 +105,7 @@
 
 \smallskip
 
-\entry{T-Mobile}{Software Engineer \textperiodcentered{} Cellular}{2018 -- 2020}{Hybrid}
+\entry{T-Mobile}{Software Engineer $\cdot$ Cellular}{2018 -- 2020}{Hybrid}
 \begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=3pt]
   \item Developed international REST API and middleware for Můj T-Mobile mobile application
   \item Improved observability and production reliability by standardizing application logging and monitoring, enabling earlier detection of incidents before user impact
@@ -92,7 +114,7 @@
 
 \smallskip
 
-\entry{Komerční Banka}{Software Engineer \textperiodcentered{} Bank}{2018}{On-site}
+\entry{Komerční Banka}{Software Engineer $\cdot$ Bank}{2018}{On-site}
 \begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=3pt]
   \item Contributed to backend integration and internal BPM systems development
   \item Worked with IBM BPM, JavaScript, BPMN, SOAP, REST, LDAP
@@ -109,7 +131,7 @@
 {\begin{tabular}[t]{@{}l@{}}
 Master's Degree \\
 Applied Informatics \\
-$\sim$ 97th percentile
+$\sim$ 97\textsuperscript{th} percentile
 \end{tabular}}
 {Prague}
 {2018 -- 2020}
@@ -121,7 +143,7 @@ $\sim$ 97th percentile
 {\begin{tabular}[t]{@{}l@{}}
 Bachelor's Degree \\
 Information Systems and Technology \\
-$\sim$ 83 percentile
+$\sim$ 83\textsuperscript{rd} percentile
 \end{tabular}}
 {Prague}
 {2014 -- 2018}
@@ -131,43 +153,43 @@ $\sim$ 83 percentile
 
 \section{skills}
 \begin{supertabular}{rl}
-  \tableentry{\footnotesize\faCode}{Java 21\textperiodcentered{} Spring Boot \textperiodcentered{} Kafka}{}
-  \tableentry{}{RabbitMQ \textperiodcentered{} PostgreSQL \textperiodcentered{} REST APIs}{}
-  \tableentry{}{Docker \textperiodcentered{} Kubernetes \textperiodcentered{} Jenkins}{}
-  \tableentry{}{Microservices \textperiodcentered{} Distributed Systems}{}
-  \tableentry{}{Technical Leadership \textperiodcentered{} Architecture}{}
-  \tableentry{}{AI-Assisted Development \textperiodcentered{} Claude Code}{}
-  \tableentry{\footnotesize\faLanguage}{English \textperiodcentered{} proficient}{}
-  \tableentry{}{Czech \textperiodcentered{} native}{}
-  \tableentry{}{Thai \textperiodcentered{} beginner}{}
+  \tableentry{\footnotesize\faCode}{Java 21 $\cdot$ Spring Boot $\cdot$ Kafka}{}
+  \tableentry{}{RabbitMQ $\cdot$ PostgreSQL $\cdot$ REST APIs}{}
+  \tableentry{}{Docker $\cdot$ Kubernetes $\cdot$ Jenkins}{}
+  \tableentry{}{Microservices $\cdot$ Distributed Systems}{}
+  \tableentry{}{Technical Leadership $\cdot$ Architecture}{}
+  \tableentry{}{AI-Assisted Development $\cdot$ Claude Code}{}
+  \tableentry{\footnotesize\faLanguage}{\href{https://cert.efset.org/en/YDeoGQ}{English $\cdot$ proficient}}{}
+  \tableentry{}{Czech $\cdot$ native}{}
+  \tableentry{}{Thai $\cdot$ beginner}{}
 \end{supertabular}
 
 \smallskip
 
 \section{certifications}
 \begin{supertabular}{rl}
-  \tableentry{Java}{\textbf{Oracle Certified Professional}}{}
-  \tableentry{}{OCPJP \textperiodcentered{} 1Z0-809 \textperiodcentered{} Java 8 SE \textperiodcentered{} Oct 2020}{spaceafter}
-  \tableentry{Java}{\textbf{Oracle Certified Associate}}{}
-  \tableentry{}{OCAJP \textperiodcentered{} 1Z0-808 \textperiodcentered{} Java 8 SE \textperiodcentered{} Jul 2019}{spaceafter}
+  \tableentry{Java}{\textbf{\href{https://www.credly.com/badges/357bd6c9-0345-4bc4-a901-3efb3d18e42c}{Oracle Certified Professional}}}{}
+  \tableentry{}{OCPJP $\cdot$ 1Z0-809 $\cdot$ Java 8 SE $\cdot$ Oct 2020}{spaceafter}
+  \tableentry{Java}{\textbf{\href{https://www.credly.com/badges/76e52bee-3443-47ec-97ef-7d022ea57c54}{Oracle Certified Associate}}}{}
+  \tableentry{}{OCAJP $\cdot$ 1Z0-808 $\cdot$ Java 8 SE $\cdot$ Jul 2019}{}
 \end{supertabular}
 
 \smallskip
 
-\section{open source \textperiodcentered{} personal}
+\section{open source \texorpdfstring{$\cdot$}{-} personal}
 \begin{supertabular}{rl}
-  \tableentry{Maven Plugin}{\textbf{facepalm-maven-plugin}}{}
+  \tableentry{Maven Plugin}{\textbf{\href{https://github.com/nikolas-charalambidis/facepalm-maven-plugin}{facepalm-maven-plugin}}}{}
   \tableentry{}{Security-first leakage analyser}{}
-  \tableentry{CLI App}{\textbf{czechout}}{}
+  \tableentry{CLI App}{\textbf{\href{https://github.com/nikolas-charalambidis/czechout}{czechout}}}{}
   \tableentry{}{Personal finance and invoicing CLI system}{}
 \end{supertabular}
 
 \smallskip
 
-\section{open source \textperiodcentered{} contributions}
+\section{open source \texorpdfstring{$\cdot$}{-} contributions}
 \begin{supertabular}{rl}
   \tableentry{Maven Plugin}{\textbf{mapstruct}}{}
-  \tableentry{}{Contributed documentation clarifiying}{}
+  \tableentry{}{Contributed documentation clarifying}{}
   \tableentry{}{Lombok and 3\textsuperscript{rd}-party interoperability}{}
 \end{supertabular}
 
@@ -175,9 +197,8 @@ $\sim$ 83 percentile
 
 \section{miscellaneous}
 \begin{supertabular}{rl}
-  \tableentry{domain}{Banking \textperiodcentered{} PSD2, PCI DSS, AMLD}{spaceafter}
-  \tableentry{community}{Stack Overflow \textperiodcentered{} 45k+ reputation}{}
-
+  \tableentry{domain}{Banking $\cdot$ PSD2, PCI DSS, AMLD}{spaceafter}
+  \tableentry{community}{\href{https://stackoverflow.com/users/3764965}{StackOverflow} $\cdot$ 45k+ reputation}{}
 \end{supertabular}
 
 \end{paracol}
