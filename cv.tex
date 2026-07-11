@@ -5,7 +5,7 @@
 \usepackage{cmbright}
 \usepackage{enumitem}
 \usepackage{fancyhdr}
-\usepackage{fontawesome5}
+\usepackage{fontawesome7}
 \usepackage{geometry}
 \usepackage{hyperref}
 \usepackage[sf]{libertine}
@@ -46,8 +46,20 @@
 \pagestyle{empty}
 \titleformat{\section}{\scshape\LARGE\raggedright}{}{0em}{}[\vspace{2pt}\hrule]
 \titlespacing{\section}{0pt}{\medskipamount}{\smallskipamount}
+
+% Standard entry for single-role positions
 \newcommand{\entry}[4]{{{\textbf{#1}}} \hfill #3 \\
 #2 \hfill #4}
+
+% New commands for multi-role positions
+\newcommand{\companyentry}[3]{%
+\textbf{#1}%
+\if\relax\detokenize{#2}\relax\else\ $\cdot$ #2\fi%
+\hfill #3%
+}
+\newcommand{\roleentry}[2]{%
+\textit{#1} \hfill #2%
+}
 
 % Fixed definition to safely handle empty vs non-empty arguments for row spacing
 \newcommand{\tableentry}[3]{%
@@ -60,7 +72,7 @@
 \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l r @{}}
   \begin{tabular}[b]{@{}l@{}}
     {\sffamily\Huge\textbf{Nikolas Charalambidis}} \\[2pt]
-    {\large Senior Software Engineer $\cdot$ Distributed Systems $\cdot$ Banking Platforms}
+    {\normalsize Senior Software Engineer $\cdot$ AI-Assisted Development $\cdot$ Distributed Systems $\cdot$ Fintech}
   \end{tabular} &
   \footnotesize
   \begin{tabular}[b]{@{}ll@{}}
@@ -74,7 +86,7 @@
 
 \vspace{0.2cm}
 
-\small Senior backend engineer with 8+ years of experience building software systems in banking, fintech, and telecommunications. Specialized in Java, distributed systems, integrations, and regulated environments.
+\small Senior software engineer with 8+ years of experience building software systems in banking, fintech, and telecommunications. Specialized in Java, Spring, distributed systems, integrations, and regulated environments. Experienced in applying AI-assisted development workflows, automation, and engineering productivity improvements.
 
 \begin{paracol}{2}
 
@@ -82,19 +94,27 @@
 
 \section{experience}
 
-\entry{Finshape}{Software Engineer $\cdot$ Fintech}{2021 -- ongoing}{Remote}
+\companyentry{Finshape}{Fintech in Banking}{Remote}\\[2pt]
+\roleentry{Lead Software Engineer}{2023 -- ongoing}
 \begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=3pt]
-  \item Engineered and maintained core backend services for internet banking platforms deployed at three Tier-1 banks (TBC Bank, Access Bank, Victoria Bank) across regulated production environments
-  \item Delivered Victoria Bank (2024) integration end-to-end --- achieved Visa ADS certification on first attempt, implemented Open Banking PSD2-compliant flows, and ensured PCI-DSS production readiness of core backend components
   \item Acted as team lead during delivery-critical phases and represented the team in backend council discussions as primary backend engineer, shaping cross-project architecture and technical direction
   \item Drove AI tooling adoption: authored team-wide Claude Code guidelines, MCP integration standards, and reusable prompt workflows, standardizing AI-assisted development across the backend team
+  \item Delivered Victoria Bank (2024) integration end-to-end --- achieved Visa ADS certification on first attempt, implemented Open Banking PSD2-compliant flows, and ensured PCI-DSS production readiness of core backend components
+\end{itemize}
+
+\vspace{4pt}
+
+\roleentry{Senior Software Engineer}{2021 -- 2023}
+\begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=3pt]
+  \item Engineered and maintained core backend services for internet banking platforms deployed at three Tier-1 banks (TBC Bank, Access Bank, Victoria Bank) across regulated production environments
   \item Improved shared platform libraries with enhancements to REST logging and observability, resolved product bugs, and maintained documentation reused across multiple banking projects
   \item Java 21, Spring Boot, RabbitMQ, Kafka, Kubernetes, microservices, and distributed systems
 \end{itemize}
 
 \smallskip
 
-\entry{Česká spořitelna}{Software Engineer $\cdot$ Bank}{2020 -- 2021}{Remote}
+\companyentry{Česká spořitelna}{Bank}{Remote}\\[2pt]
+\roleentry{Software Engineer}{2020 -- 2021}
 \begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=3pt]
   \item Led the BE implementation of Bank Identity (Bank iD) integration, enabling secure authentication for government services including data mailbox access
   \item Integrated authentication flows with NIA (National Identity Authority), ensuring compliance with national eIDAS identity standards
@@ -105,7 +125,8 @@
 
 \smallskip
 
-\entry{T-Mobile}{Software Engineer $\cdot$ Telco}{2018 -- 2020}{Hybrid}
+\companyentry{T-Mobile}{Telco}{Hybrid}\\[2pt]
+\roleentry{Software Engineer}{2018 -- 2020}
 \begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=3pt]
   \item Developed international REST API and middleware for the Můj T-Mobile mobile application
   \item Improved observability and production reliability by standardizing application logging and monitoring, enabling earlier detection of incidents before user impact
@@ -114,10 +135,11 @@
 
 \smallskip
 
-\entry{Komerční banka}{Software Engineer $\cdot$ Bank}{2018}{On-site}
+\companyentry{Komerční banka}{Bank}{On-site}\\[2pt]
+\roleentry{Software Engineer}{2018}
 \begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=3pt]
   \item Developed backend integrations and internal BPM workflows
-  \item IBM BPM, BPMN, SOAP, REST, and LDAP
+  \item IBM BPM, JavaScript, BPMN, SOAP, REST, and LDAP
 \end{itemize}
 
 % ================= RIGHT COLUMN =================
@@ -150,7 +172,6 @@ $\sim$ 83\textsuperscript{rd} percentile
 
 \smallskip
 
-
 \section{skills}
 \begin{supertabular}{rl}
   \tableentry{\footnotesize\faCode}{Java 21 $\cdot$ Spring Boot $\cdot$ Kafka}{}
@@ -158,7 +179,7 @@ $\sim$ 83\textsuperscript{rd} percentile
   \tableentry{}{Docker $\cdot$ Kubernetes $\cdot$ Jenkins}{}
   \tableentry{}{Microservices $\cdot$ Distributed Systems}{}
   \tableentry{}{Technical Leadership $\cdot$ Architecture}{}
-  \tableentry{}{AI-Assisted Development $\cdot$ Claude Code}{}
+  \tableentry{\footnotesize\faClaude}{AI-Assisted Development $\cdot$ Claude Code}{}
   \tableentry{\footnotesize\faLanguage}{\href{https://cert.efset.org/en/YDeoGQ}{English $\cdot$ proficient}}{}
   \tableentry{}{Czech $\cdot$ native}{}
   \tableentry{}{Thai $\cdot$ beginner}{}
