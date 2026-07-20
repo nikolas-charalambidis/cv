@@ -66,6 +66,12 @@
   \textsc{#1} & #2\ifx\relax#3\relax\\[0pt]\else\\[3pt]\fi%
 }
 
+% Minified single-row entry:
+%   #1 company  #2 type  #3 role  #4 year(s)  #5 location
+\newcommand{\minifiedentry}[5]{%
+  {\footnotesize\textbf{#1} $\cdot$ #2 $\cdot$ \textit{#3}\hfill #4 $\cdot$ #5}\par%
+}
+
 \begin{document}
 
 % Header
@@ -97,7 +103,7 @@
 \companyentry{Finshape}{Fintech in Banking}{Remote}\\[2pt]
 \roleentry{Lead Software Engineer}{2023 -- ongoing}
 \begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=3pt]
-  \item Acted as team lead during delivery-critical phases and represented the team in backend council discussions as primary backend engineer, shaping cross-project architecture and technical direction
+  \item Acted as team lead during delivery-critical phases and represented the project team in backend council discussions as primary backend engineer, shaping and influencing cross-project architecture
   \item Drove AI tooling adoption: authored team-wide Claude Code guidelines, MCP integration standards, and reusable prompt workflows, standardizing AI-assisted development across the backend team
   \item Delivered Victoria Bank (2024) integration end-to-end --- achieved Visa ADS certification on first attempt, implemented Open Banking PSD2-compliant flows, and ensured PCI-DSS production readiness of core backend components
 \end{itemize}
@@ -116,9 +122,8 @@
 \companyentry{Česká spořitelna}{Bank}{Remote}\\[2pt]
 \roleentry{Software Engineer}{2020 -- 2021}
 \begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=3pt]
-  \item Led the BE implementation of Bank Identity (Bank iD) integration, enabling secure authentication for government services including data mailbox access
+  \item Participated on the BE implementation of Bank Identity (Bank iD) integration, enabling secure authentication for government services including data mailbox access
   \item Integrated authentication flows with NIA (National Identity Authority), ensuring compliance with national eIDAS identity standards
-  \item Technical lead of a small specialized team, owning technical direction, delivery coordination, and architectural decisions
   \item Mentored junior engineers and supported onboarding into security-sensitive banking domain
   \item Java 11, Kafka, OpenShift, SOAP, MySQL, Siebel
 \end{itemize}
