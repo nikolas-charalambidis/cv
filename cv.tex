@@ -1,0 +1,259 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{cmbright}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{fontawesome7}
+\usepackage{geometry}
+\usepackage[sf]{libertine}
+\usepackage{microtype}
+\usepackage{paracol}
+\usepackage{supertabular}
+\usepackage{titlesec}
+\usepackage{hyperref}
+
+% Define the conditional variable BEFORE using it
+\newif\ifprintversion
+\printversionfalse
+
+\ifprintversion
+  \hypersetup{hidelinks}
+\else
+  \hypersetup{
+    colorlinks=true,
+    urlcolor=blue,
+    linkcolor=blue
+  }
+\fi
+
+% Force correct hyphenation behavior for Czech names (now valid with T1 encoding)
+\hyphenation{Čes-ká spo-ři-tel-na Komerč-ní}
+
+% Geometry
+\geometry{a4paper, hmargin=1.75cm, vmargin=1.5cm}
+\columnratio{0.52, 0.48}
+\setlength\columnsep{0.04\textwidth}
+\setlength\parindent{0pt}
+\setlength{\smallskipamount}{3pt plus 1pt minus 1pt}
+\setlength{\medskipamount}{8pt plus 2pt minus 2pt}
+\setlength{\bigskipamount}{12pt plus 3pt minus 3pt}
+
+% Style
+\pagestyle{empty}
+\titleformat{\section}{\scshape\LARGE\raggedright}{}{0em}{}[\vspace{2pt}\hrule]
+\titlespacing{\section}{0pt}{\medskipamount}{\smallskipamount}
+
+% Standard entry for single-role positions
+\newcommand{\entry}[4]{{{\textbf{#1}}} \hfill #3 \\
+#2 \hfill #4}
+
+% New commands for multi-role positions
+\newcommand{\companyentry}[3]{%
+\textbf{#1}%
+\if\relax\detokenize{#2}\relax\else\ $\cdot$ #2\fi%
+\hfill #3%
+}
+
+\newcommand{\roleentry}[2]{%
+\textit{#1} \hfill #2%
+}
+
+\newcommand{\tableentry}[3]{%
+  \textsc{#1} & #2\ifx\relax#3\relax\\[0pt]\else\\[3pt]\fi%
+}
+
+\newcommand{\minifiedentry}[5]{%
+  {\footnotesize\textbf{#1} $\cdot$ #2 $\cdot$ \textit{#3}\hfill #4 $\cdot$ #5}\par%
+}
+
+\begin{document}
+
+% ================= HEADER =================
+
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l r @{}}
+  \begin{tabular}[b]{@{}l@{}}
+    {\sffamily\Huge\textbf{Nikolas Charalambidis}} \\[10pt]
+    {\normalsize Technical Lead $\cdot$ Senior Software Engineer $\cdot$ Fintech $\cdot$ AI-Assisted Development}
+  \end{tabular} &
+  \footnotesize
+  \begin{tabular}[b]{@{}ll@{}}
+    \faPhone & +420 731 873 330 \\
+    \faEnvelope & \href{mailto:nikolas.charalambidis@gmail.com}{nikolas.charalambidis@gmail.com} \\
+    \faGlobe & \href{https://www.nikolas-charalambidis.com/}{nikolas-charalambidis.com} \\
+    \faGithub & \href{https://github.com/Nikolas-Charalambidis}{github.com/Nikolas-Charalambidis} \\
+    \faStackOverflow & \href{https://stackoverflow.com/users/3764965}{stackoverflow.com/users/3764965} \\
+  \end{tabular}
+\end{tabular*}
+
+\vspace{0.2cm}
+
+\small
+Technical Lead and Senior Backend Engineer with 9 years in banking and fintech. Led backend engineering and
+cross-functional production delivery for digital banking platforms across three major banks. Focused on technical
+leadership, reliable payment systems, and AI-assisted engineering.
+
+\begin{paracol}{2}
+
+% ================= LEFT COLUMN =================
+
+\section{experience}
+
+\companyentry{Finshape}{Fintech $\cdot$ Banking}{Hybrid}\\[2pt]
+
+\roleentry{Technical Lead}{2026 -- Present}
+\begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=3pt]
+  \item Stabilized delivery ahead of a digital banking platform go-live, coordinating seven teams across backend,
+  frontend, mobile, analysis, DevOps, QA, and offshore support, covering tens of backend microservices and seven
+  environments.
+  \item Led the on-site production go-live abroad: PROD deployments, environment topology migration, and a rehearsed
+  rollback.
+  \item Turned delivery risk analysis into a tracked mitigation plan for executive management.
+  \item Introduced a pre-release validation gate using a production-mirrored support environment for deployment and
+  sanity checks.
+  \item Initiated Kafka reliability improvements across payment flows, addressing partitioning, consumer lag,
+  idempotency, storage configuration, and component lifecycle dependencies.
+\end{itemize}
+
+\vspace{4pt}
+
+\roleentry{Senior Software Engineer}{2021 -- 2026}
+\begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=3pt]
+  \item Delivered backend capabilities for internet banking at three major banks, including TBC Bank and Access Bank,
+  while improving shared platform libraries for REST logging and observability.
+  \item Progressed from backend engineer to de-facto technical lead on a digital banking program, shaping backend
+  architecture and representing the project in the backend council.
+  \item Passed Visa ADS certification on the first attempt; implemented encrypted PAN handling and P2P alias management.
+  \item Delivered PSD2 Open Banking flows and reviewed PCI DSS-related data-protection practices, including sensitive
+  data exposure in logs and databases and the anonymization, pseudonymization, and redaction of data in lower
+  environments.
+  \item Selected for the company-wide AI Champions program; built a multi-agent CI pull-request reviewer adopted across
+  the organization and project-specific Claude Code tooling.
+  \item Java 17, Kotlin 2.x, Spring Boot, Kafka, RabbitMQ, PostgreSQL, Kubernetes, Jenkins, Claude Code
+\end{itemize}
+
+\smallskip
+
+\companyentry{Česká spořitelna}{Banking}{Full remote}\\[2pt]
+
+\roleentry{Senior Software Engineer}{2020 -- 2021}
+\begin{itemize}[noitemsep,leftmargin=3.5mm,rightmargin=0mm,topsep=3pt]
+  \item Delivered core infrastructure for the bank's Bank iD services, building Kafka-based identity integrations with
+  the Czech NIA (National Identity and Authentication Point) and securing required Ministry of the Interior
+  accreditation.
+  \item Validated gateway latency and correctness under load by building a custom Kafka-based performance testing tool.
+  \item Connected the bank's Kafka event bus to Siebel CRM with an event bridge.
+  \item Mentored junior engineers and promoted software engineering best practices across greenfield development.
+  \item Java 11, Spring Boot, Kafka (Avro), SOAP, PostgreSQL, OpenShift
+\end{itemize}
+
+\smallskip
+
+\minifiedentry{Alpiq}{Energy}{Full Stack Engineer}{2020}{Hybrid}
+
+\smallskip
+
+\minifiedentry{T-Mobile}{Telecommunications}{Full Stack Engineer}{2018 -- 2020}{Hybrid}
+
+\smallskip
+
+\minifiedentry{Komerční banka}{Banking}{Software Engineer}{2017 -- 2018}{On-site}
+
+\smallskip
+
+\minifiedentry{Trask Solutions}{Banking}{Tester}{2016 -- 2017}{On-site}
+
+\smallskip
+
+\minifiedentry{Credit Portal}{Microfinance Lending}{Risk Analyst}{2015}{On-site}
+
+% ================= RIGHT COLUMN =================
+
+\switchcolumn
+
+\section{education}
+
+\entry
+{University of Economics}
+{\begin{tabular}[t]{@{}l@{}}
+Master's Degree $\cdot$ Ing. \\
+Applied Informatics \\
+$\sim$ Ranked in the top 3\% of the cohort
+\end{tabular}}
+{Prague}
+{2018 -- 2020}
+
+\smallskip
+
+\entry
+{University of Economics}
+{\begin{tabular}[t]{@{}l@{}}
+Bachelor's Degree $\cdot$ Bc. \\
+Information Systems and Technology
+\end{tabular}}
+{Prague}
+{2014 -- 2018}
+
+\smallskip
+
+\section{skills}
+
+\begin{supertabular}{rl}
+  \tableentry{\footnotesize\faCode}{Kotlin $\cdot$ Java $\cdot$ Spring Boot $\cdot$ REST APIs}{}
+  \tableentry{}{Microservices $\cdot$ Distributed Systems}{}
+  \tableentry{}{Kafka $\cdot$ RabbitMQ $\cdot$ PostgreSQL $\cdot$ MySQL}{}
+  \tableentry{}{Docker $\cdot$ Kubernetes $\cdot$ Jenkins}{}
+  \tableentry{}{System Design $\cdot$ Backend Architecture}{}
+  \tableentry{}{CI/CD $\cdot$ Production Readiness $\cdot$ Release Management}{}
+  \tableentry{}{Claude Code $\cdot$ MCP Servers $\cdot$ Multi-Agent Workflows}{}
+  \tableentry{\footnotesize\faLanguage}{\href{https://cert.efset.org/en/YDeoGQ}{English $\cdot$ proficient}}{}
+  \tableentry{}{Czech $\cdot$ native}{}
+  \tableentry{}{Thai $\cdot$ beginner}{}
+\end{supertabular}
+
+\smallskip
+
+\section{certifications}
+
+\begin{supertabular}{rl}
+  \tableentry{Java}{\textbf{\href{https://www.credly.com/badges/357bd6c9-0345-4bc4-a901-3efb3d18e42c}%
+    {Oracle Certified Professional}}}{}
+  \tableentry{}{OCPJP $\cdot$ 1Z0-809 $\cdot$ Java 8 SE $\cdot$ Oct 2020}{spaceafter}
+  \tableentry{Java}{\textbf{\href{https://www.credly.com/badges/76e52bee-3443-47ec-97ef-7d022ea57c54}%
+    {Oracle Certified Associate}}}{}
+  \tableentry{}{OCAJP $\cdot$ 1Z0-808 $\cdot$ Java 8 SE $\cdot$ Jul 2019}{}
+\end{supertabular}
+
+\smallskip
+
+\section{selected projects}
+
+\begin{supertabular}{rl}
+  \tableentry{Maven Plugin}{\href{https://github.com/nikolas-charalambidis/facepalm-maven-plugin}%
+    {facepalm-maven-plugin}}{}
+  \tableentry{}{Sensitive information leakage analyzer}{}
+\end{supertabular}
+
+\smallskip
+
+\section{contributions}
+
+\begin{supertabular}{rl}
+  \tableentry{Stack Overflow}{\href{https://stackoverflow.com/users/3764965}{45k+ reputation}}{}
+\end{supertabular}
+
+\smallskip
+
+\section{domain expertise}
+
+\begin{supertabular}{rl}
+    \tableentry{Banking}{Visa ADS $\cdot$ PCI DSS $\cdot$ P2P Aliases}{spaceafter}
+    \tableentry{}{SWIFT $\cdot$ Open Banking (PSD2)}{spaceafter}
+    \tableentry{Onboarding}{Digital Onboarding $\cdot$ eKYC}{spaceafter}
+    \tableentry{Identity}{Bank iD $\cdot$ NIA $\cdot$ eIDAS}{spaceafter}
+    \tableentry{Lending}{Microfinance Credit Risk $\cdot$ Scoring}{}
+\end{supertabular}
+
+\end{paracol}
+
+\end{document}
