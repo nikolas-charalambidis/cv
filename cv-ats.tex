@@ -1,0 +1,247 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage[sf]{libertine}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[a4paper, hmargin=1.75cm, vmargin=1.5cm]{geometry}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{needspace}
+\usepackage{microtype}
+\usepackage{hyperref}
+
+% ATS: map every glyph to real Unicode and emit real space characters, so text extraction is clean
+\input{glyphtounicode}
+\pdfgentounicode=1
+\pdfinterwordspaceon
+
+% ATS: no "fi", "fl", "ff" ligature glyphs, so keywords such as "configuration" extract letter by letter
+\DisableLigatures[f]{encoding = *, family = *}
+
+% Define the conditional variable BEFORE using it
+\newif\ifprintversion
+\printversionfalse
+
+\ifprintversion
+  \hypersetup{hidelinks}
+\else
+  \hypersetup{
+    colorlinks=true,
+    urlcolor=blue,
+    linkcolor=blue
+  }
+\fi
+
+\hypersetup{
+  pdftitle={Nikolas Charalambidis - Technical Lead - CV},
+  pdfauthor={Nikolas Charalambidis},
+  pdfsubject={Curriculum Vitae},
+  pdfkeywords={Technical Lead, Senior Software Engineer, Backend, Java, Kotlin, Spring Boot, Kafka, Microservices,
+  Banking, Fintech, PSD2, PCI DSS},
+  pdflang={en}
+}
+
+\definecolor{sepgray}{gray}{0.55}
+
+% Layout: single column, ragged right, no hyphenation, so keywords never split across lines
+\pagestyle{empty}
+\raggedright
+\setlength\parindent{0pt}
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\clubpenalty=10000
+\widowpenalty=10000
+\setlength{\smallskipamount}{3pt plus 1pt minus 1pt}
+\setlength{\medskipamount}{8pt plus 2pt minus 2pt}
+\setlength{\bigskipamount}{12pt plus 3pt minus 3pt}
+
+\setlist[itemize]{noitemsep, leftmargin=3.5mm, rightmargin=0mm, topsep=3pt}
+
+% Section: real uppercase letters (small caps would extract as lowercase), rule underneath
+\setcounter{secnumdepth}{0}
+\makeatletter
+\newcommand{\cvheading}{\@startsection{section}{1}{\z@}{\bigskipamount}{1sp}{\normalfont\Large\raggedright}}
+\makeatother
+\renewcommand{\section}[1]{%
+  \cvheading{\texorpdfstring{\MakeUppercase{#1}}{#1}}\nopagebreak\vspace{3pt}\hrule\nopagebreak\vspace{6pt}%
+}
+
+% Separator: a plain pipe, the delimiter ATS parsers recognize most reliably
+\newcommand{\sep}{\hspace{0.45em}{\color{sepgray}|}\hspace{0.45em}}
+
+% Straight apostrophe (U+0027), so "Master's" matches keyword searches instead of extracting as U+2019
+\newcommand{\ap}{\textquotesingle}
+
+% ATS: no right-aligned (\hfill) dates or locations; parsers read a right-aligned run as a second column and move
+% it out of reading order. Everything stays left-aligned, in the order a parser expects.
+
+% Organization line: Name | Industry | Location | Work mode (empty arguments are skipped)
+\newcommand{\org}[3]{%
+  \par\Needspace{4\baselineskip}\medskip
+  \textbf{#1}%
+  \if\relax\detokenize{#2}\relax\else\sep #2\fi%
+  \if\relax\detokenize{#3}\relax\else\sep #3\fi\par\nopagebreak
+}
+
+% Role line: Title | Dates
+\newcommand{\role}[2]{%
+  \textit{#1}\sep #2\par\nopagebreak
+}
+
+% Technologies line inside a role
+\newcommand{\tech}[1]{\textit{Technologies:} #1}
+
+% Skills row
+\newcommand{\skill}[2]{\textbf{#1:} #2\par\smallskip}
+
+\begin{document}
+
+% ================= HEADER =================
+
+{\Huge\textbf{Nikolas Charalambidis}}\par\vspace{8pt}
+{\large Technical Lead\sep Senior Software Engineer\sep Backend\sep Fintech}\par\vspace{6pt}
+{\small
+Prague, Czech Republic\sep EU citizen, no visa sponsorship required in the EU\par
++420 731 873 330\sep \href{mailto:nikolas.charalambidis@gmail.com}{nikolas.charalambidis@gmail.com}\sep
+\href{https://nikolas-charalambidis.com}{nikolas-charalambidis.com}\par
+\href{https://linkedin.com/in/nikolas-charalambidis}{linkedin.com/in/nikolas-charalambidis}\sep
+\href{https://github.com/Nikolas-Charalambidis}{github.com/Nikolas-Charalambidis}\sep
+\href{https://stackoverflow.com/users/3764965}{stackoverflow.com/users/3764965}\par}
+
+% ================= SUMMARY =================
+
+\section{Summary}
+
+Technical Lead and Senior Software Engineer with over 9 years of experience in banking and fintech, combining hands-on
+backend engineering in Java, Kotlin, Spring Boot, and Kafka with technical leadership and cross-functional production
+delivery for digital banking platforms across multiple banks. Focused on reliable payment systems, distributed
+microservices architecture, PSD2 Open Banking, PCI DSS data protection, and AI-assisted software engineering.
+
+% ================= SKILLS =================
+
+\section{Skills}
+
+\skill{Languages and Frameworks}{Kotlin, Java, Spring Boot, Spring Cloud, Spring Data, REST APIs, SOAP, Maven, Gradle}
+\skill{Architecture}{Microservices, Distributed Systems, Event-Driven Architecture, System Design, Backend Architecture}
+\skill{Messaging and Databases}{Apache Kafka, Avro, RabbitMQ, PostgreSQL, MySQL}
+\skill{DevOps and Cloud}{Docker, Kubernetes, OpenShift, Jenkins, CI/CD, AWS, Release Management, Production Readiness}
+\skill{Banking Domain}{Visa ADS, PCI DSS, PSD2 Open Banking, SWIFT, P2P Aliases, Digital Onboarding, eKYC, Bank iD,
+  eIDAS, Credit Scoring}
+\skill{Leadership}{Technical Leadership, Delivery Governance, Risk Management, Go-Live Coordination, Mentoring}
+\skill{AI Engineering}{Claude Code, MCP Servers, Multi-Agent Workflows, AI-Assisted Code Review}
+
+% ================= EXPERIENCE =================
+
+\section{Work Experience}
+
+\org{Finshape}{Fintech, Digital Banking}{Prague, Czech Republic\sep Hybrid}
+\role{Technical Lead}{09/2026 -- Present}
+\begin{itemize}
+  \item Stabilized delivery ahead of a digital banking platform go-live, coordinating seven teams across backend,
+  frontend, mobile, analysis, DevOps, QA, and offshore support, covering tens of backend microservices and seven
+  environments.
+  \item Led the on-site production go-live abroad, including production deployments, environment topology migration,
+  and a rehearsed rollback.
+  \item Turned delivery risk analysis into a tracked mitigation plan for executive management.
+  \item Introduced a pre-release validation gate using a production-mirrored support environment for deployment and
+  sanity checks.
+  \item Initiated Kafka reliability improvements across payment flows, addressing partitioning, consumer lag,
+  idempotency, storage configuration, and component lifecycle dependencies.
+\end{itemize}
+
+\org{Finshape}{Fintech, Digital Banking}{Prague, Czech Republic\sep Hybrid}
+\role{Senior Software Engineer}{02/2021 -- 09/2026}
+\begin{itemize}
+  \item Delivered backend capabilities for internet banking at three major banks, including TBC Bank and Access Bank,
+  while improving shared platform libraries for REST logging and observability.
+  \item Progressed from backend engineer to de facto technical lead on a digital banking program, shaping backend
+  architecture and representing the project in the backend council.
+  \item Passed Visa ADS certification on the first attempt; implemented encrypted PAN handling and P2P alias management.
+  \item Delivered PSD2 Open Banking flows and reviewed PCI DSS data protection practices, including sensitive data
+  exposure in logs and databases and the anonymization, pseudonymization, and redaction of data in lower environments.
+  \item Selected for the company-wide AI Champions program; built a multi-agent CI pull request reviewer adopted across
+  the organization and project-specific Claude Code tooling.
+  \item \tech{Java 17, Kotlin 2.x, Spring Boot, Kafka, RabbitMQ, PostgreSQL, Kubernetes, Jenkins, Claude Code}
+\end{itemize}
+
+\org{Česká spořitelna}{Banking}{Prague, Czech Republic\sep Remote}
+\role{Senior Software Engineer}{04/2020 -- 01/2021}
+\begin{itemize}
+  \item Delivered core infrastructure for the bank\ap s Bank iD services, building Kafka-based identity integrations
+  with the Czech National Identity and Authentication Point (NIA).
+  \item Validated gateway latency and correctness under load by building a custom Kafka-based performance testing tool.
+  \item Connected the bank\ap s Kafka event bus to Siebel CRM with an event bridge.
+  \item Mentored junior engineers and promoted software engineering best practices across greenfield development.
+  \item \tech{Java 11, Spring Boot, Kafka, Avro, SOAP, PostgreSQL, OpenShift}
+\end{itemize}
+
+\org{Alpiq}{Energy}{Prague, Czech Republic\sep Hybrid}
+\role{Full Stack Engineer}{02/2020 -- 04/2020}
+\begin{itemize}
+  \item Built microservices and CRM for a broker platform on AWS, using Spring Cloud and Camunda BPM process
+  orchestration.
+  \item \tech{Java, Spring Cloud, Spring Data, Camunda BPM, MySQL, AWS, Gradle}
+\end{itemize}
+
+\org{T-Mobile Czech Republic}{Telecommunications}{Prague, Czech Republic\sep Hybrid}
+\role{Full Stack Engineer}{02/2018 -- 01/2020}
+\begin{itemize}
+  \item Developed a large legacy self-care web application built on Java, Spring, and Thymeleaf over SOAP web service
+  backends.
+  \item Built Spring-based REST middleware implementing internationally harmonized APIs for the OneApp and OneShop
+  applications.
+  \item \tech{Java, Spring, Thymeleaf, SOAP, REST APIs, Maven, Kubernetes}
+\end{itemize}
+
+\org{Komerční banka}{Banking}{Prague, Czech Republic\sep On-site}
+\role{Software Engineer}{08/2016 -- 02/2018}
+\begin{itemize}
+  \item Delivered backend integrations of LDAP, SOAP web services, and data on the IBM BPM (Lombardi) platform for
+  in-house banking projects, using JavaScript and process modeling.
+  \item \tech{IBM BPM, JavaScript, SOAP, LDAP}
+\end{itemize}
+
+\org{Trask Solutions}{Banking}{Prague, Czech Republic\sep On-site}
+\role{Software Tester}{2016}
+
+% ================= EDUCATION =================
+
+\section{Education}
+
+\org{Prague University of Economics and Business}{}{Prague, Czech Republic}
+\role{Master\ap s Degree (Ing.), Applied Informatics}{2018 -- 2020}
+Ranked in the top 3\% of the cohort.
+
+\org{Prague University of Economics and Business}{}{Prague, Czech Republic}
+\role{Bachelor\ap s Degree (Bc.), Information Systems and Technology}{2014 -- 2018}
+
+% ================= CERTIFICATIONS =================
+
+\section{Certifications}
+
+\org{\href{https://www.credly.com/badges/357bd6c9-0345-4bc4-a901-3efb3d18e42c}%
+    {Oracle Certified Professional, Java SE 8 Programmer}}{}{}
+\role{Oracle\sep 1Z0-809}{10/2020}
+
+\org{\href{https://www.credly.com/badges/76e52bee-3443-47ec-97ef-7d022ea57c54}%
+    {Oracle Certified Associate, Java SE 8 Programmer}}{}{}
+\role{Oracle\sep 1Z0-808}{07/2019}
+
+% ================= PROJECTS =================
+
+\section{Projects and Contributions}
+
+\org{facepalm-maven-plugin}{}{\href{https://github.com/nikolas-charalambidis/facepalm-maven-plugin}%
+    {github.com/nikolas-charalambidis/facepalm-maven-plugin}}
+Open-source Maven plugin that analyzes sensitive information leakage, available in Maven Central.\par
+
+\org{Stack Overflow}{}{\href{https://stackoverflow.com/users/3764965}{stackoverflow.com/users/3764965}}
+45k+ reputation.\par
+
+% ================= LANGUAGES =================
+
+\section{Languages}
+
+English (Proficient, \href{https://cert.efset.org/en/YDeoGQ}{EF SET certified})\sep Czech (Native)\sep Thai (Beginner)
+
+\end{document}
